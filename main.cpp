@@ -15,7 +15,12 @@ int main(){
     FILE* current_file;
     char* file_name = (char *)malloc(0x100);
     int* arr_test = new int[TESTCASE_LEN+1024];
-    puts("|\tTest\t|\t N \t|\t lgN \t|\t 1.45lgN \t|\tAVL\t|\t RB \t|");
+    printf("|\t%10s\t|\t%10s\t|\t%10s\t|\t%10s\t|\t%10s\t|\t%10s\t|\n",
+            "Test"," N "," lgN "," 1.45lgN ","AVL"," RB "
+    );
+    printf("|\t%s\t|\t%s\t|\t%s\t|\t%s\t|\t%s\t|\t%s\t|\n",
+            "----------","----------","----------","----------","----------","----------"
+    );
     for(size_t turn = 0 ; turn < 10 ;turn++){
         rb_root.root = NULL;
         avl_root = NULL;
@@ -39,7 +44,7 @@ int main(){
             rb_root.insert(arr_test[i]);
         }
         fflush(stdout);
-        printf("|\t%4zu\t|\t%3zu\t|\t%5g\t|\t%9g\t|\t%3zu\t|\t%4zu\t|\n",
+        printf("|\t%10zu\t|\t%10zu\t|\t%10g\t|\t%10g\t|\t%10zu\t|\t%10zu\t|\n",
                     turn,len_,log2(len_),1.45*log2(len_),
                     AVL::caculate_height(avl_root),RED_BLACK::caculate_height(rb_root.root)
         );
