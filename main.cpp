@@ -32,16 +32,14 @@ int main(){
         }
         if(turn == 0)
             std::sort(arr_test,arr_test+TESTCASE_LEN);
-        if(turn == 0)
-            std::sort(arr_test,arr_test+TESTCASE_LEN);
         else if(turn == 9)
             std::sort(arr_test,arr_test+TESTCASE_LEN,std::greater<int>());
         for(size_t i = 0; i < TESTCASE_LEN ; i++){
-            AVL::insert(avl_root,arr_test[i]);
+            avl_root = AVL::insert(avl_root,arr_test[i]);
             rb_root.insert(arr_test[i]);
         }
         fflush(stdout);
-        printf("|\t%zu\t|\t%zu\t|\t%zu\t|\n",
+        printf("|\t%4zu\t|\t%3zu\t|\t%3zu\t|\n",
                     turn,AVL::caculate_height(avl_root),RED_BLACK::caculate_height(rb_root.root)
         );
         fclose(current_file);
