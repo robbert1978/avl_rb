@@ -19,9 +19,6 @@ int main(){
     printf("1.45logN = %lf\n",1.45*log2(TESTCASE_LEN));
     puts("|\tTest\t|\tAVL\t|\tRB\t|");
     for(size_t turn = 0 ; turn < 10 ;turn++){
-        if(turn==0){
-            std::sort(arr_test,arr_test+TESTCASE_LEN);
-        }
         rb_root.root = NULL;
         avl_root = NULL;
         sprintf(file_name,"test_cases/%zu_test",turn);
@@ -32,7 +29,15 @@ int main(){
         }
         for(size_t i = 0; i < TESTCASE_LEN ; i++){
             fscanf(current_file,"%d",&arr_test[i]);
-            avl_root = AVL::insert(avl_root,arr_test[i]);
+        }
+        if(turn == 0)
+            std::sort(arr_test,arr_test+TESTCASE_LEN);
+        if(turn == 0)
+            std::sort(arr_test,arr_test+TESTCASE_LEN);
+        else if(turn == 9)
+            std::sort(arr_test,arr_test+TESTCASE_LEN,std::greater<int>());
+        for(size_t i = 0; i < TESTCASE_LEN ; i++){
+            AVL::insert(avl_root,arr_test[i]);
             rb_root.insert(arr_test[i]);
         }
         fflush(stdout);
