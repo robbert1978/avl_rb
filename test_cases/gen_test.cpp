@@ -6,6 +6,7 @@
 #define TESTCASE_LEN 1000000
 std::default_random_engine generator;
 std::uniform_int_distribution<int> distribution(-2147483648,2147483647);
+std::uniform_int_distribution<int> distribution_len(-1024,1024);
 int main(){
     srand(time(NULL));
     FILE* current_file;
@@ -21,7 +22,9 @@ int main(){
             exit(-1);
         }
         std::vector<int> arr_test;
-        for(size_t i = 0; i<TESTCASE_LEN;i++){
+        size_t len_ = TESTCASE_LEN+distribution_len(generator);
+        fprintf(current_file,"Count: %zu\n",len_);
+        for(size_t i = 0; i<len_;i++){
             ;
             while(1){
                 get_int = distribution(generator);
